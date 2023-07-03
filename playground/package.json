@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "nuxt-module-preact-islands-playground",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^0.6.6",
+    "nuxt": "latest"
+  },
+  "dependencies": {
+    "@babel/core": "^7.22.5",
+    "@rollup/plugin-babel": "^6.0.3"
+  }
+}
