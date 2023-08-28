@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/core": "^7.22.5",
     "@babel/plugin-transform-react-jsx": "^7.22.5",
-    "@barelyhuman/preact-island-plugins": "^0.0.13",
+    "@barelyhuman/preact-island-plugins": "0.1.1-beta.4",
     "@nuxt/kit": "^3.5.2",
     "@preact/signals": "^1.1.4",
     "@rollup/plugin-babel": "^6.0.3"
@@ -44,10 +44,10 @@
     "@types/node": "^18",
     "changelogen": "^0.5.3",
     "eslint": "^8.42.0",
-    "nuxt": "^3.5.1",
-    "vitest": "^0.31.4",
+    "nuxt": "3.5.1",
     "preact": "^10.15.1",
-    "preact-render-to-string": "^6.1.0"
+    "preact-render-to-string": "^6.1.0",
+    "vitest": "^0.31.4"
   },
   "peerDependencies": {
     "preact": "^10.15.1",

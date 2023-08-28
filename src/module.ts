@@ -1,22 +1,12 @@
 import { defineNuxtModule } from "@nuxt/kit";
-// @ts-expect-error upstream types invalid
-import preactIslandPlugins from "@barelyhuman/preact-island-plugins/rollup";
+import preactIslandPlugins, {
+  Options,
+} from "@barelyhuman/preact-island-plugins/rollup";
 import babel from "@rollup/plugin-babel";
 // @ts-expect-error upstream issue
 import babelJSX from "@babel/plugin-transform-react-jsx";
 
-// Module options TypeScript interface definition
-export interface ModuleOptions {
-  rootDir: string;
-  atomic: boolean;
-  hash: boolean;
-  baseURL: string;
-  bundleClient: {
-    outDir: string;
-  };
-}
-
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<Options>({
   meta: {
     name: "preact-islands",
     configKey: "preactIslands",
@@ -24,11 +14,13 @@ export default defineNuxtModule<ModuleOptions>({
   // Default configuration options of the Nuxt module
   defaults: {
     rootDir: ".",
+    baseURL: "/",
     atomic: true,
     hash: false,
-    baseURL: "/",
-    bundleClient: {
-      outDir: "something",
+    tsconfig: "./tsconfig.json",
+    client: {
+      tsconfig: "./tsconfig.json",
+      output: "./dist/client",
     },
   },
   setup(options, nuxt) {
