@@ -4,7 +4,7 @@ import preactIsland, {
 } from "@barelyhuman/preact-island-plugins/rollup";
 import { join } from "path";
 
-export default defineNuxtModule<Options>({
+export default defineNuxtModule({
   meta: {
     name: "preact-islands",
     configKey: "preactIslands",
@@ -56,7 +56,9 @@ export default defineNuxtModule<Options>({
         ".ts": "tsx",
       };
 
-      nitroConfig.rollupConfig.plugins.unshift(preactIsland(options));
+      nitroConfig.rollupConfig.plugins.unshift(
+        preactIsland(options as unknown as Options)
+      );
 
       nitroConfig.publicAssets ||= [];
       nitroConfig.publicAssets.push({

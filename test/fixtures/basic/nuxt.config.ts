@@ -1,7 +1,6 @@
-import MyModule from '../../../src/module'
+import preactIslands from "../../../src/module";
 
 export default defineNuxtConfig({
-  modules: [
-    MyModule
-  ]
-})
+  preactIslands: {},
+  modules: [preactIslands],
+});
