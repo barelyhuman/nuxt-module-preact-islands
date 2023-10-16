@@ -1,10 +1,8 @@
 import { defineNuxtModule } from "@nuxt/kit";
-import preactIslandPlugins, {
+import preactIsland, {
   Options,
 } from "@barelyhuman/preact-island-plugins/rollup";
-import babel from "@rollup/plugin-babel";
-// @ts-expect-error upstream issue
-import babelJSX from "@babel/plugin-transform-react-jsx";
+import { join } from "path";
 
 export default defineNuxtModule<Options>({
   meta: {
@@ -12,15 +10,18 @@ export default defineNuxtModule<Options>({
     configKey: "preactIslands",
   },
   // Default configuration options of the Nuxt module
+  // @ts-ignore
   defaults: {
     rootDir: ".",
-    baseURL: "/",
+    baseURL: "/islands",
     atomic: true,
+    //@ts-ignore
+    tsconfig: false,
     hash: false,
-    tsconfig: "./tsconfig.json",
     client: {
-      tsconfig: "./tsconfig.json",
-      output: "./dist/client",
+      output: ".islands",
+      //@ts-ignore
+      tsconfig: false,
     },
   },
   setup(options, nuxt) {
@@ -48,28 +49,21 @@ export default defineNuxtModule<Options>({
       nitroConfig.esbuild ||= {};
       nitroConfig.esbuild.options ||= {};
 
-      nitroConfig.esbuild.options.jsxFactory = "h";
-      nitroConfig.esbuild.options.jsxImportSource = "Fragment";
+      nitroConfig.esbuild.options.jsx = "automatic";
+      nitroConfig.esbuild.options.jsxImportSource = "preact";
       nitroConfig.esbuild.options.loaders = {
         ".js": "jsx",
+        ".ts": "tsx",
       };
 
-      nitroConfig.rollupConfig.plugins.push(
-        babel({
-          babelHelpers: "bundled",
-          plugins: [
-            [
-              babelJSX,
-              {
-                runtime: "automatic",
-                importSource: "preact",
-              },
-            ],
-          ],
-        })
-      );
+      nitroConfig.rollupConfig.plugins.unshift(preactIsland(options));
 
-      nitroConfig.rollupConfig.plugins.push(preactIslandPlugins(options));
+      nitroConfig.publicAssets ||= [];
+      nitroConfig.publicAssets.push({
+        dir: join(process.cwd(), ".islands"),
+        baseURL: "/islands",
+        maxAge: Infinity,
+      });
     });
   },
 });
