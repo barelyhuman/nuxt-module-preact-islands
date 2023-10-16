@@ -13,15 +13,15 @@ Simple nuxt module wrapper around preact-island-plugins
 
 ```bash
 # Using pnpm
-pnpm add -D nuxt-module-preact-islands
+pnpm add -D nuxt-module-preact-islands tslib
 pnpm add preact preact-render-to-string
 
 # Using yarn
-yarn add --dev nuxt-module-preact-islands
+yarn add --dev nuxt-module-preact-islands tslib
 yarn add preact preact-render-to-string
 
 # Using npm
-npm install --save-dev nuxt-module-preact-islands
+npm install --save-dev nuxt-module-preact-islands tslib
 npm add preact preact-render-to-string
 ```
 
