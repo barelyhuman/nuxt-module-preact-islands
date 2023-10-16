@@ -1,6 +1,6 @@
 {
   "name": "nuxt-module-preact-islands",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple nuxt module wrapper around preact-island-plugins",
   "repository": "barelyhuman/nuxt-module-preact-islands",
   "license": "MIT",
